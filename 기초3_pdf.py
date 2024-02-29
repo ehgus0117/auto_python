@@ -27,10 +27,10 @@ pdf2File.close()
 pdf2 = open('combined.pdf', 'rb')
 pdfReader = PyPDF2.PdfFileReader(pdf2)
 pdfWatermarkReader = PyPDF2.PdfFileReader(open('watermark.pdf', 'rb'))
+pdfWriter = PyPDF2.PdfFileWriter()
 
 for page in range(pdfReader.numPages):
     pdfReader.getPage(page).mergePage(pdfWatermarkReader.getPage(0))
-    pdfWriter = PyPDF2.PdfFileWriter()
     pdfWriter.addPage(pdfReader.getPage(page))
 
 combineWater = open('combind_water.pdf', 'wb')
